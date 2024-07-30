@@ -1,0 +1,7 @@
+{
+  "name": "Jmusic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

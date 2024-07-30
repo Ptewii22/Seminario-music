@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button (click)="goToLogin()"><ion-icon name="arrow-undo-circle-outline"></ion-icon></ion-button>
+      <ion-title>Registro</ion-title>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="custom-bg-color">
+  <figure>
+
+    <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png">
+  </figure>
+
+  <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.get('name').invalid && registerForm.get('name').touched">
+      El nombre es requerido y debe tener al menos 3 caracteres.
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched">
+      Email inválido.
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched">
+      La contraseña debe tener al menos 9 caracteres Una Mayuscula, Una Minuscula, Un numero Y un caracter.
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Confirmar Contraseña</ion-label>
+      <ion-input formControlName="confirmPassword" type="password"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.get('confirmPassword').invalid && registerForm.get('confirmPassword').touched">
+      Las contraseñas no coinciden.
+    </ion-text>
+
+    <ion-button expand="full" type="submit" [disabled]="registerForm.invalid">Registrar</ion-button>
+  </form>
+</ion-content>
