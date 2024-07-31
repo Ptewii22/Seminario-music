@@ -11,11 +11,22 @@
   <h1>Artistas</h1>
   <swiper-container slides-per-view="4" speed="500">
     <swiper-slide *ngFor="let artstis of artists" >
-      <ion-avatar>
+      <ion-avatar (click)="showSongs(artstis)">
         <img src="{{artstis.image}}" alt="">
   <span>{{artstis.name}}</span>
       </ion-avatar>
     </swiper-slide>
   </swiper-container>
 </ion-content>
+
+<ion-footer>
+
+  <ion-text color="danger" *ngIf="!song.name">
+      <h2>Aqui aparecera nuestra cancion</h2>
+  </ion-text>
+
+  <ion-text color="primary" *ngIf="song.name">
+    <h2>{{song.name}}</h2>
+  </ion-text>
   
+</ion-footer>
