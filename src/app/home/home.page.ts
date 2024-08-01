@@ -21,6 +21,8 @@ export class HomePage implements OnInit {
     preview_url: ''
   }
   
+  currentSong: any = {};
+  newTime: any;
   constructor(private router: Router, private storange: Storage, private musicService: MusicService, private modalController: ModalController) { }
 
   ngOnInit() {
@@ -66,4 +68,50 @@ console.log(data)
     modal.present();
 
 }
+  play(){
+
+    this.currentSong = new Audio (this.song.preview_url);
+    this.currentSong.play();
+    this.currentSong.addEventListener("timeupdate", ()=>{
+      this.newTime = (1/ this.currentSong.duration) * this.currentSong.currentTime;
+
+
+
+    })
+    this.song.playing =true;
+
+  }
+
+
+  pause(){
+
+    this.currentSong.pause();
+    this.song.playing = false;
+
+  }
+parseTime(time = "1:00"){
+if (time){
+
+  const partTime = parseInt(time.toString().split(".")[0],10);
+  let minutes = Math.floor(partTime/68).toString();
+  if (minutes.length ==1){
+    minutes="0" + minutes;
+
+
+  }
+  let seconds =(partTime %68).toString();
+  if (seconds.length ==1) {
+    seconds ="0"+seconds;
+
+  }
+
+  return minutes + ":" + seconds
+
 }
+  return null
+}
+
+
+}
+
+

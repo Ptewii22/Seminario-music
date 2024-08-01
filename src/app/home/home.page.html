@@ -21,12 +21,33 @@
 
 <ion-footer>
 
-  <ion-text color="danger" *ngIf="!song.name">
-      <h2>Aqui aparecera nuestra cancion</h2>
-  </ion-text>
+<ion-grid>
 
-  <ion-text color="primary" *ngIf="song.name">
-    <h2>{{song.name}}</h2>
-  </ion-text>
-  
+  <ion-row>
+    <ion-col class="ion-text-start">{{ parseTime(currentSong.currentTime)|| "0:00"}}</ion-col>
+    <ion-col class="ion-text-end">{{parseTime(currentSong.duration) || "0:00"}}</ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-progress-bar [value]="newTime  || 0.5 "> 
+</ion-progress-bar>
+
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-icon name="heart"></ion-icon>
+    </ion-col>
+  <ion-col>
+    <ion-text>
+      {{song.name || "Aun no has seleccionado la cancion"}}
+    </ion-text>
+  </ion-col>
+    <ion-col>
+      <ion-icon name="play" (click)="play()" *ngIf="!song.playing"></ion-icon>
+      <ion-icon name="pause" (click)="pause()" *ngIf="song.playing"></ion-icon>
+    </ion-col>
+
+  </ion-row>
+
+</ion-grid>
 </ion-footer>
